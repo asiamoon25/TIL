@@ -76,3 +76,8 @@
 ## DB
 
 * [Page 9](db/page-9.md)
+
+## 수학
+
+* [주성분 분석](undefined-1/undefined.md)
+* [표본공간, 확률변수, 기댓값, 분산, 표준편차](undefined-1/undefined-1.md)
