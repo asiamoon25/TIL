@@ -82,3 +82,9 @@
 * [주성분 분석](undefined-1/undefined.md)
 * [표본공간, 확률변수, 기댓값, 분산, 표준편차](undefined-1/undefined-1.md)
 * [공분산](undefined-1/undefined-2.md)
+
+## JPA
+
+* [영속성](jpa/undefined.md)
+* [GORM 과 JPA의 차이점](jpa/gorm-jpa.md)
+* [트랜잭션](jpa/undefined-1.md)
