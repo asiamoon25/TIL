@@ -44,7 +44,7 @@ Java Compiler(javac) ⇒ \*.java → \*.class(bytecode) 변환 ⇒ JVM(JIT Compi
 
 #### **JVM 구조**
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 * **클래스로더**
 * **실행엔진**

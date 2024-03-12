@@ -76,7 +76,7 @@ Key, Value 값의 비정형 데이터를 저장하는 거라서 다양한 데이
 * Sorted Set
 * Hash
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 

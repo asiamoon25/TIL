@@ -40,7 +40,7 @@
 3. 시스템 Flow 파악 어려움
 4. 디버깅 어려움
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### **Event Driven Architecture 필수 구성 요소**
 
