@@ -87,4 +87,5 @@
 
 * [영속성](jpa/undefined.md)
 * [GORM 과 JPA의 차이점](jpa/gorm-jpa.md)
-* [🎓 트랜잭션](jpa/undefined-1.md)
+* [🎓 트랜잭션](jpa/undefined-1/README.md)
+  * [격리수준](jpa/undefined-1/undefined.md)

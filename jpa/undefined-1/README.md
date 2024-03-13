@@ -2,7 +2,7 @@
 
 ## Transaction
 
-* 더 이상 분할이 불가능한 업무처리의 단위 = 수행됭야 할 일련의 연산 모음
+* 더 이상 분할이 불가능한 업무처리의 단위 = 수행되야 할 일련의 연산 모음
 *   데이터베이스의 상태를 변경시키기 위해 수행하는 작업 단위
 
     상태변경 : SELECT, UPDATE, INSERT, DELETE 같은 행동을 뜻함.
@@ -64,7 +64,7 @@
 
 ### Transaction 의 상태
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 #### 트랜잭션의 5가지의 상태
 
@@ -84,7 +84,7 @@
 
     트랜잭션이 성공적으로 종료되어 Commit 연산을 실행한 후의 상태
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 #### Transaction 예외
 
@@ -114,7 +114,7 @@ INSERT, DELETE, UPDATE 등의 SQL 명령문을 통해 데이터 상태를 바꿀
 
 
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 작업의 단위는 질의어 한문장이 아님..( 쿼리 한줄이 아니다...!)
 
