@@ -99,3 +99,4 @@
 * [racing](toyproject/racing/README.md)
   * [🐎 경마 기록 분석의 이해](toyproject/racing/undefined.md)
   * [경주 성적표 용어 정리](toyproject/racing/undefined-1.md)
+  * [기초 경마 용어](toyproject/racing/undefined-2.md)
