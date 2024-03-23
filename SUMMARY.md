@@ -90,10 +90,6 @@
 * [🎓 트랜잭션](jpa/undefined-1/README.md)
   * [격리수준](jpa/undefined-1/undefined.md)
 
-## 코테 <a href="#codingtest" id="codingtest"></a>
-
-* [DataAnalize](codingtest/dataanalize.md)
-
 ## toyproject
 
 * [racing](toyproject/racing/README.md)
