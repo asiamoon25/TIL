@@ -1,10 +1,8 @@
 # Table of contents
 
-* [Initial page](README.md)
-
 ## JAVA
 
-* [비동기](java/undefined.md)
+* [비동기](README.md)
 * [The JAVA](java/the-java.md)
 * [JAVA 8](java/java-8/README.md)
   * [Lambda Expression](java/java-8/lambda-expression.md)
@@ -18,10 +16,6 @@
 ## Cache
 
 * [Redis](cache/redis.md)
-
-## Message
-
-* [Page 2](message/page-2.md)
 
 ## API
 
@@ -58,6 +52,11 @@
 * [Docker](container/docker/README.md)
   * [Docker-Compose](container/docker/docker-compose.md)
 
+***
+
+* [Java Collection FrameWork](java-collection-framework/README.md)
+  * [Page 2](java-collection-framework/page-2.md)
+
 ## ARCHITECTURE & PATTERN
 
 * [DDD(Domain-Driven Design)](architecture-and-pattern/ddd-domain-driven-design/README.md)
@@ -73,26 +72,9 @@
   * [Tactical Design](architecture-and-pattern/ddd-domain-driven-design/tactical-design.md)
 * [EDA(Event Driven Architecture)](architecture-and-pattern/eda-event-driven-architecture.md)
 
-## DB
-
-* [Page 9](db/page-9.md)
-
-## 수학
-
-* [주성분 분석](undefined-1/undefined.md)
-* [표본공간, 확률변수, 기댓값, 분산, 표준편차](undefined-1/undefined-1.md)
-* [공분산](undefined-1/undefined-2.md)
-
 ## JPA
 
 * [영속성](jpa/undefined.md)
 * [GORM 과 JPA의 차이점](jpa/gorm-jpa.md)
 * [🎓 트랜잭션](jpa/undefined-1/README.md)
   * [격리수준](jpa/undefined-1/undefined.md)
-
-## toyproject
-
-* [racing](toyproject/racing/README.md)
-  * [🐎 경마 기록 분석의 이해](toyproject/racing/undefined.md)
-  * [경주 성적표 용어 정리](toyproject/racing/undefined-1.md)
-  * [기초 경마 용어](toyproject/racing/undefined-2.md)
