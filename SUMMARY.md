@@ -55,7 +55,7 @@
 ***
 
 * [Java Collection FrameWork](java-collection-framework/README.md)
-  * [Page 2](java-collection-framework/page-2.md)
+  * [List](java-collection-framework/list.md)
 
 ## ARCHITECTURE & PATTERN
 
