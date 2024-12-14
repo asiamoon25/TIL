@@ -52,12 +52,6 @@
 * [Docker](container/docker/README.md)
   * [Docker-Compose](container/docker/docker-compose.md)
 
-***
-
-* [Java Collection FrameWork](java-collection-framework/README.md)
-  * [List](java-collection-framework/list.md)
-  * [LinkedList](java-collection-framework/linkedlist.md)
-
 ## ARCHITECTURE & PATTERN
 
 * [DDD(Domain-Driven Design)](architecture-and-pattern/ddd-domain-driven-design/README.md)
@@ -79,3 +73,9 @@
 * [GORM 과 JPA의 차이점](jpa/gorm-jpa.md)
 * [🎓 트랜잭션](jpa/undefined-1/README.md)
   * [격리수준](jpa/undefined-1/undefined.md)
+
+## JavaCollectionFramework
+
+* [Java Collection FrameWork](javacollectionframework/java-collection-framework/README.md)
+  * [List](javacollectionframework/java-collection-framework/list.md)
+  * [LinkedList](javacollectionframework/java-collection-framework/linkedlist.md)
