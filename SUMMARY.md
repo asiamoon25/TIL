@@ -56,6 +56,7 @@
 
 * [Java Collection FrameWork](java-collection-framework/README.md)
   * [List](java-collection-framework/list.md)
+  * [LinkedList](java-collection-framework/linkedlist.md)
 
 ## ARCHITECTURE & PATTERN
 
