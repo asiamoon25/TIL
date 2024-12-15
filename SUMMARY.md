@@ -76,6 +76,9 @@
 
 ## JavaCollectionFramework
 
-* [Java Collection FrameWork](javacollectionframework/java-collection-framework/README.md)
-  * [List](javacollectionframework/java-collection-framework/list.md)
-  * [LinkedList](javacollectionframework/java-collection-framework/linkedlist.md)
+* [Java Collection FrameWork](javacollectionframework/java-collection-framework.md)
+* [Collection](javacollectionframework/collection/README.md)
+  * [List](javacollectionframework/collection/list.md)
+  * [LinkedList](javacollectionframework/collection/linkedlist.md)
+  * [Vector](javacollectionframework/collection/vector.md)
+* [Map](javacollectionframework/map.md)
