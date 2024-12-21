@@ -78,7 +78,8 @@
 
 * [Java Collection FrameWork](javacollectionframework/java-collection-framework.md)
 * [Collection](javacollectionframework/collection/README.md)
-  * [List](javacollectionframework/collection/list.md)
-  * [LinkedList](javacollectionframework/collection/linkedlist.md)
-  * [Vector](javacollectionframework/collection/vector.md)
+  * [List](javacollectionframework/collection/list/README.md)
+    * [LinkedList](javacollectionframework/collection/list/linkedlist.md)
+    * [Vector](javacollectionframework/collection/list/vector.md)
+    * [ArrayList](javacollectionframework/collection/list/arraylist.md)
 * [Map](javacollectionframework/map.md)
