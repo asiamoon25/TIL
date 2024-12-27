@@ -64,7 +64,7 @@
 
 ### Transaction 의 상태
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 트랜잭션의 5가지의 상태
 
@@ -114,7 +114,7 @@ INSERT, DELETE, UPDATE 등의 SQL 명령문을 통해 데이터 상태를 바꿀
 
 
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 작업의 단위는 질의어 한문장이 아님..( 쿼리 한줄이 아니다...!)
 
