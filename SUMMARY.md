@@ -87,3 +87,8 @@
 ## Langchain
 
 * [Langchain 이란?](langchain/langchain.md)
+
+## Milvus 기반 벡터 검색 시스템 구축 및 데이터 전처리
+
+* [로드맵](milvus/undefined.md)
+* [VectorDB 란?](milvus/vectordb.md)
