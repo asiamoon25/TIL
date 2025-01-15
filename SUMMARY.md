@@ -93,3 +93,4 @@
 * [로드맵](milvus/undefined.md)
 * [VectorDB 란?](milvus/vectordb.md)
 * [Milvus 기본 이해 및 환경 설정](milvus/milvus.md)
+* [Milvus 데이터 전처리 및 삽입](milvus/milvus-1.md)
