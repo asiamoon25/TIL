@@ -95,6 +95,7 @@
 * [Milvus 기본 이해 및 환경 설정](milvus/milvus.md)
 * [Milvus 데이터 전처리 및 삽입](milvus/milvus-1.md)
 * [효율적인 검색 로직 구현](milvus/undefined-1.md)
+* [추가 최적화 및 기능 확장](milvus/undefined-2.md)
 
 ## jocoding-langchain
 
