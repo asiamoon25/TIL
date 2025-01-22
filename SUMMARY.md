@@ -110,3 +110,7 @@
 * [LLM 이해 및 활용](llm/llm.md)
 * [ChatModel 이해 및 구현](llm/chatmodel.md)
 * [Embedding 의 이해 및 활용](llm/embedding.md)
+
+## maeil-mail
+
+* [Record를 DTO 로 사용하는 이유](maeil-mail/record-dto.md)
