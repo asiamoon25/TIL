@@ -113,4 +113,7 @@
 
 ## maeil-mail
 
-* [Record를 DTO 로 사용하는 이유](maeil-mail/record-dto.md)
+* [Record를 DTO 로 사용하는 이유](maeil-mail/record-dto/README.md)
+  * [Record](maeil-mail/record-dto/record.md)
+  * [캡슐화](maeil-mail/record-dto/undefined.md)
+  * [VO](maeil-mail/record-dto/vo.md)
