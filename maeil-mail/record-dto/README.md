@@ -44,7 +44,7 @@ public record MemberDto(String name, String email, int age){}
 
 ## Record 로 생성한 모든 객체는 DTO?
 
-모든 Record 객체가 DTO 인 것은 아님. Record  는 단순히 데이터를 <mark style="background-color:blue;">캡슐화</mark> 하는 역할을 하는데, DTO 외에도 값 객체(Value Object) 등의 다양한 용도로 사용될 수 있음&#x20;
+모든 Record 객체가 DTO 인 것은 아님. Record  는 단순히 데이터를 [<mark style="background-color:blue;">캡슐화</mark> ](undefined.md)하는 역할을 하는데, DTO 외에도 값 객체(Value Object) 등의 다양한 용도로 사용될 수 있음&#x20;
 
 ```java
 // value object 로 사용
@@ -53,7 +53,7 @@ public record Coordinates(double x, double y) {}
 
 
 
-DTO 는 계층 간 데이터 전송을 목적으로 하느 객체이 반면, <mark style="background-color:blue;">VO</mark> 는 도메인 모델 내에서 특정 값을 표현하는 객체로 사용됨. 따라서, Record는 이 두가지 모드에 적합하게 사용할 수 있지만, 그 목적에 따라 사용 방법이 달라짐.
+DTO 는 계층 간 데이터 전송을 목적으로 하느 객체이 반면, [<mark style="background-color:blue;">VO</mark> ](vo.md)는 도메인 모델 내에서 특정 값을 표현하는 객체로 사용됨. 따라서, Record는 이 두가지 모드에 적합하게 사용할 수 있지만, 그 목적에 따라 사용 방법이 달라짐.
 
 ## Record 와 VO 비교
 
