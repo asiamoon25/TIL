@@ -13,45 +13,6 @@
 * [JAVA 17](java/java-17.md)
 * [JVM](java/jvm.md)
 
-## Cache
-
-* [Redis](cache/redis.md)
-
-## API
-
-* [인증](api/undefined/README.md)
-  * [JWT](api/undefined/jwt.md)
-
-## WEB
-
-* [HTTPS](web/https.md)
-* [CORS](web/cors.md)
-* [SESSION](web/session.md)
-* [DNS](web/dns.md)
-
-***
-
-* [검색 엔진](undefined/README.md)
-  * [Page 1](undefined/page-1.md)
-
-## OS
-
-* [LINUX](os/linux/README.md)
-  * [check Linux version](os/linux/check-linux-version.md)
-  * [Linux Command](os/linux/linux-command.md)
-  * [Signal](os/linux/signal.md)
-  * [Scheduler](os/linux/scheduler.md)
-  * [OS 입출력](os/linux/os.md)
-  * [Zombie](os/linux/zombie.md)
-* [OS란](os/os.md)
-* [메모리 관리](os/undefined.md)
-
-## CONTAINER
-
-* [Container](container/container.md)
-* [Docker](container/docker/README.md)
-  * [Docker-Compose](container/docker/docker-compose.md)
-
 ## ARCHITECTURE & PATTERN
 
 * [DDD(Domain-Driven Design)](architecture-and-pattern/ddd-domain-driven-design/README.md)
@@ -99,11 +60,6 @@
 * [효율적인 검색 로직 구현](milvus/undefined-1.md)
 * [추가 최적화 및 기능 확장](milvus/undefined-2.md)
 
-## jocoding-langchain
-
-* [ChatPDF](jocoding-langchain/chatpdf.md)
-* [시인 만들기](jocoding-langchain/undefined.md)
-
 ## LLM
 
 * [로드맵](llm/undefined.md)
@@ -118,3 +74,8 @@
   * [캡슐화](maeil-mail/record-dto/undefined.md)
   * [VO](maeil-mail/record-dto/vo.md)
 * [DB Replication](maeil-mail/db-replication.md)
+
+## Fine-tuning
+
+* [👺 파인튜닝 이란](fine-tuning/undefined.md)
+* [파인튜닝 하는 법](fine-tuning/undefined-1.md)
