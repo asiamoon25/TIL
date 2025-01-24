@@ -74,6 +74,7 @@
   * [캡슐화](maeil-mail/record-dto/undefined.md)
   * [VO](maeil-mail/record-dto/vo.md)
 * [DB Replication](maeil-mail/db-replication.md)
+* [SOLID](maeil-mail/solid.md)
 
 ## Fine-tuning
 
