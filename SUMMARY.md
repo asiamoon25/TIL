@@ -87,3 +87,4 @@
 
 * [Find Eventual Safe States](leetcode/find-eventual-safe-states/README.md)
   * [답](leetcode/find-eventual-safe-states/undefined.md)
+* [Palindrome Number](leetcode/palindrome-number.md)
