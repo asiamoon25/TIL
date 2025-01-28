@@ -75,6 +75,7 @@
   * [VO](maeil-mail/record-dto/vo.md)
 * [DB Replication](maeil-mail/db-replication.md)
 * [SOLID](maeil-mail/solid.md)
+* [Load Balancing](maeil-mail/load-balancing.md)
 
 ## Fine-tuning
 
