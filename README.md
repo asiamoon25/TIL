@@ -1,144 +1,250 @@
----
-description: CompletableFuture, Future 등등..
----
+# 로드맵
 
-# 비동기
+#### **1. LangChain 기본 이해**
 
-### 비동기
+**목표**
 
-* CompletableFuture java 5 -> Future 라는 비동기를 가능하게 해주는 클래스가 있었음. 하지만 문제점이 많음.
+* LangChain의 개념과 주요 구성 요소 이해.
+* 설치 및 간단한 코드 실행.
 
-1. 예외 처리용 API를 제공하지 않음.
-2. 여러 Future 조합이 어려움
-3. Future를 외부에서 완성 시킬 수 없다.
+**학습 및 실습**
 
-3번에서 나온 외부에서 완성 시킬 수 없다는 예시로 보여줌
+1. **LangChain의 개념**
+   * LLM 기반 파이프라인을 설계하고 실행하기 위한 프레임워크.
+   * 주요 구성 요소:
+     * **PromptTemplates**: 사용자 정의 프롬프트 생성.
+     * **Chains**: 작업 흐름을 연결하여 여러 LLM 호출 처리.
+     * **Memory**: 대화 기록을 저장하여 컨텍스트를 유지.
+     * **Agents**: 동적 작업 흐름.
+     * **Tools**: 외부 API 호출 등 다양한 도구 통합.
+2.  **LangChain 설치**
 
-```
-ExecutorService executor = Executors.newSingleThreadExecutor();
-Future<Integer> future = executor.submit(() -> {
-    // 비동기 작업 수행
-    return 42;
-});
+    ```bash
+    bash복사편집pip install langchain openai
+    ```
+3.  **간단한 LangChain 실행**
 
-// 외부에서 작업 완료를 표시할 수 없음
-// future.complete(42); // 이와 같이 완료시킬 수 없음
+    ```python
+    python복사편집from langchain.prompts import PromptTemplate
+    from langchain.llms import OpenAI
 
-future.get();  // 이 부분은 작업이 끝날 때 까지 대기하는 메서드
-```
+    # 프롬프트 정의
+    prompt = PromptTemplate(
+        input_variables=["name"],
+        template="Hello, {name}! How can I assist you today?"
+    )
 
-CompletableFuture 는 외부에서 작업을 종료 시킬 수 있음
+    # LLM 초기화
+    llm = OpenAI(model="text-davinci-003")
 
-```
-CompletableFuture<Integer> future = new CompletableFuture<>();
+    # 실행
+    print(llm(prompt.format(name="Alice")))
+    ```
 
-// 외부에서 작업을 완료시킴
-future.complete(42); // 결과 값을 설정하여 작업 완료
+***
 
-// 또는
-// future.completeExceptionally(new RuntimeException("작업 실패")); // 작업 예외로 완료
+#### **2. LangChain 주요 구성 요소 학습**
 
-// 작업 완료 후 결과를 처리하는 콜백 등록
-future.thenAccept(result -> System.out.println("작업 결과: " + result));
-future.exceptionally(ex -> {
-    System.out.println("작업 실패: " + ex.getMessage());
-    return null;
-});
-```
+**목표**
 
-병렬처리
+* LangChain의 각 구성 요소를 상세히 이해하고 활용 방법 익히기.
 
-ExecutorService 를 통해 스레드 생성 후 CompletableFuture를 통해 비동기로 여러개의 스레드를 돌릴 수 있음 (_밥먹으면서 휴대폰도 보고 발도 씻을 수 있음!_)
+**학습 및 실습**
 
-CompletableFuture 는 값을 반환 받을 수 있는 supplyAsync(), void 인 runAsync() 가 있음.
+1. **PromptTemplates**
+   * 사용자 입력을 기반으로 템플릿화된 프롬프트 생성.
+   * **TIL 작성**: PromptTemplate 사용법과 실습 코드 기록.
+2.  **Chains**
 
-작업의 결과(return) 이 있냐 없냐의 차이 이므로 알맞게 사용하면 된다.
+    * 여러 작업을 순차적으로 실행하는 체인 구성.
+    * 예: 텍스트 생성 → 요약 → 번역.
 
-이 작업들은 두개의 오버로드 된 형태가 있는데, 하나는 스레드 풀을 지정, 다른 하나는 실행할 비동기 작업만을 받는 형태이다.
+    ```python
+    python복사편집from langchain.chains import SimpleSequentialChain
+    from langchain.llms import OpenAI
 
-병렬처리 하기 위해서는 thread 풀을 지정해서 하는 방법을 추천한다.
+    # LLMs
+    llm1 = OpenAI(model="text-davinci-003")
+    llm2 = OpenAI(model="text-davinci-003")
 
-```
-public class ParallelProcessingExample {
-    public static void main(String[] args) {
-        ExecutorService executor = Executors.newFixedThreadPool(4);
+    # 체인 구성
+    chain = SimpleSequentialChain(
+        chains=[
+            llm1.as_chain(),
+            llm2.as_chain()
+        ]
+    )
 
-        CompletableFuture<Integer> future1 = CompletableFuture.supplyAsync(() -> {
-            // 비동기 작업 1 수행
-            return 42;
-        }, executor);
+    result = chain.run("LangChain 활용법 학습")
+    print(result)
+    ```
+3.  **Memory**
 
-        CompletableFuture<Integer> future2 = CompletableFuture.supplyAsync(() -> {
-            // 비동기 작업 2 수행
-            return 100;
-        }, executor);
+    * 대화형 AI에 컨텍스트 유지 추가.
+    * 예: 챗봇이 이전 메시지를 기억.
 
-        CompletableFuture<Integer> combinedFuture = future1.thenCombine(future2, (result1, result2) -> {
-            // 두 작업의 결과를 조합하여 새로운 결과 생성
-            return result1 + result2;
-        });
+    ```python
+    python복사편집from langchain.chains import ConversationChain
+    from langchain.memory import ConversationBufferMemory
 
-        combinedFuture.thenAccept(result -> {
-            System.out.println("작업 결과: " + result);
-            executor.shutdown();
-        });
-    }
-}
-```
+    memory = ConversationBufferMemory()
+    chain = ConversationChain(llm=llm, memory=memory)
 
-### 병렬처리의 문제점 (dead lock)
+    print(chain.run("What is LangChain?"))
+    print(chain.run("How does it handle memory?"))
+    ```
+4.  **Agents and Tools**
 
-dead lock 이 발생하는 조건
+    * **Agents**: 동적으로 작업 흐름을 처리.
+    * **Tools**: 외부 API와 통합.
 
-1. 자원 동시 접근 불가
-   * 한번에 여러 프로세스(혹은 쓰레드) 가 한 자원에 접근하지 못하도록 막음
-2. 점유하고 기다리기
-   * 자원을 가지고 있는 상태에서 다른 프로세스가 쓰는 자원을 반납하기를 기다리는 상태
-3. 자원 강탈 불가
-   * 다른 프로세스가 이미 점유한 자원을 가져오지 못함
-4. 순환 종속성
-   * 각 프로세스(혹은 쓰레드)가 서로를 대기하는 상태
+    ```python
+    python복사편집from langchain.agents import initialize_agent, load_tools
+    from langchain.llms import OpenAI
 
-#### 해결 방법은?
+    tools = load_tools(["google-search", "calculator"])
+    agent = initialize_agent(tools, llm, agent="zero-shot-react-description", verbose=True)
 
-**데드락 회피** : 위에서 나온 조건 처럼 코딩 안하면 된다.
+    result = agent.run("What is the capital of France plus 100?")
+    print(result)
+    ```
 
-**데드락 탐지와 회복** : 데드락 발생을 막지 않음. 발생하면 해결함
+***
 
-**데드락 무시** : 데드락 예방에는 성능상 손해를 봐야한다. 그래서 무시도 하나의 방법이다.(무시해도 될만한 녀석이라면)
+#### **3. LangChain 데이터 연결**
 
-데드락 회피에 대한 예시
+**목표**
 
-```
-public class DeadlockPreventionExample {
-    public static void main(String[] args) {
-        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
-            // 비동기 작업 1 수행
-            return "Hello";
-        });
+* LangChain을 데이터베이스, 파일, API와 연결.
+* 예: Milvus, SQL, JSON 파일 등.
 
-        CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> {
-            // 비동기 작업 2 수행
-            return "World";
-        });
+**학습 및 실습**
 
-        CompletableFuture<String> combinedFuture = future1.thenCombineAsync(future2, (result1, result2) -> {
-            // 두 작업의 결과를 조합하여 새로운 결과 생성
-            return result1 + " " + result2;
-        });
+1.  **데이터 연결**
 
-        combinedFuture.thenAccept(result -> {
-            System.out.println("결과: " + result);
-        });
+    * Milvus를 활용한 벡터 검색.
 
-        // CompletableFuture의 완료를 기다림
-        combinedFuture.join();
-    }
-}
-```
+    ```python
+    python복사편집from langchain.vectorstores import Milvus
+    vectorstore = Milvus(host="localhost", port="19530")
 
-위의 예시 코드에서 future1과 future2는 각각 "Hello"와 "World"라는 결과를 생성하는 비동기 작업을 수행한다. 이후 thenCombineAsync() 메서드를 사용하여 두 작업의 결과를 조합하여 "Hello World"라는 새로운 결과를 생성하는 CompletableFuture인 combinedFuture를 생성한다.
+    result = vectorstore.search("LangChain 활용법", k=5)
+    print(result)
+    ```
+2.  **SQL 연결**
 
-thenAccept() 메서드에서는 최종 결과를 출력하고, join() 메서드를 호출하여 CompletableFuture의 완료를 기다린다. join() 메서드는 CompletableFuture가 완료될 때까지 블로킹된다.
+    * SQL 데이터베이스와 연결하여 쿼리 실행.
 
-이 예시 코드에서는 순환 종속성을 피하고, 두 개의 작업이 순차적으로 실행되도록 보장된다. 이를 통해 데드락을 방지할 수 있다.
+    ```python
+    python복사편집from langchain.sql_database import SQLDatabase
+    from langchain.chains import SQLDatabaseChain
+
+    db = SQLDatabase.from_uri("sqlite:///example.db")
+    chain = SQLDatabaseChain(llm=llm, database=db)
+
+    print(chain.run("List all users with their emails"))
+    ```
+3.  **파일 연결**
+
+    * PDF, JSON 등 파일 데이터 연결.
+
+    ```python
+    python복사편집from langchain.document_loaders import PyPDFLoader
+
+    loader = PyPDFLoader("example.pdf")
+    documents = loader.load()
+    print(documents[0].page_content)
+    ```
+
+***
+
+#### **4. LangChain 활용 사례**
+
+**목표**
+
+* 실제 사용 사례를 실습하여 TIL에 기록.
+* 예: 챗봇, 추천 시스템, 자동화 작업.
+
+**학습 및 실습**
+
+1.  **챗봇 구현**
+
+    * 대화형 메모리를 추가하여 챗봇 구축.
+
+    ```python
+    python복사편집from langchain.chains import ConversationChain
+
+    memory = ConversationBufferMemory()
+    chatbot = ConversationChain(llm=llm, memory=memory)
+
+    print(chatbot.run("Tell me about LangChain."))
+    print(chatbot.run("How does it differ from other frameworks?"))
+    ```
+2.  **추천 시스템**
+
+    * 사용자의 입력에 따라 관련 문서를 검색하고 추천.
+
+    ```python
+    python복사편집result = vectorstore.search("추천 시스템 만들기", k=3)
+    print(result)
+    ```
+3.  **API 자동화**
+
+    * Agents와 Tools를 활용해 Google 검색, 계산기 등 자동화.
+
+    ```python
+    python복사편집result = agent.run("Calculate the population of France times 2.")
+    print(result)
+    ```
+
+***
+
+#### **5. LangChain 최적화**
+
+**목표**
+
+* 성능 및 사용성을 향상시키기 위한 최적화 방법 학습.
+* 예: 프롬프트 최적화, 캐싱, 외부 툴 통합.
+
+**학습 및 실습**
+
+1.  **프롬프트 최적화**
+
+    * 프롬프트 설계의 중요성 학습 및 최적화 실습.
+
+    ```python
+    python복사편집prompt = PromptTemplate(
+        input_variables=["question"],
+        template="You are an expert in AI. Please answer: {question}"
+    )
+    ```
+2.  **결과 캐싱**
+
+    * 동일한 요청에 대한 재응답 시간을 줄이기 위해 캐싱 사용.
+
+    ```python
+    python복사편집from langchain.cache import InMemoryCache
+
+    cache = InMemoryCache()
+    llm.cache = cache
+    ```
+3.  **사용자 정의 도구 통합**
+
+    * 새로운 툴 생성 및 LangChain에 통합.
+
+    ```python
+    python복사편집from langchain.tools import BaseTool
+
+    class CustomTool(BaseTool):
+        name = "custom_tool"
+        description = "A custom tool for specific tasks."
+
+        def _run(self, query: str):
+            return f"Processed: {query}"
+
+    tool = CustomTool()
+    ```
+
+***
+
+####

@@ -1,53 +1,8 @@
 # Table of contents
 
-## JAVA
-
-* [비동기](README.md)
-* [The JAVA](java/the-java.md)
-* [JAVA 8](java/java-8/README.md)
-  * [Lambda Expression](java/java-8/lambda-expression.md)
-  * [Date/Time API](java/java-8/date-time-api.md)
-  * [Nashorn](java/java-8/nashorn.md)
-  * [Stream](java/java-8/stream.md)
-* [JAVA 11](java/java-11.md)
-* [JAVA 17](java/java-17.md)
-* [JVM](java/jvm.md)
-
-## ARCHITECTURE & PATTERN
-
-* [DDD(Domain-Driven Design)](architecture-and-pattern/ddd-domain-driven-design/README.md)
-  * [DDD start!](architecture-and-pattern/ddd-domain-driven-design/ddd-start/README.md)
-    * [아키텍쳐 개요](architecture-and-pattern/ddd-domain-driven-design/ddd-start/undefined.md)
-    * [Domain 용어](architecture-and-pattern/ddd-domain-driven-design/ddd-start/domain.md)
-    * [도메인 모델 도출](architecture-and-pattern/ddd-domain-driven-design/ddd-start/undefined-1.md)
-    * [DDD란?](architecture-and-pattern/ddd-domain-driven-design/ddd-start/ddd.md)
-    * [도메인 모델 패턴](architecture-and-pattern/ddd-domain-driven-design/ddd-start/undefined-2.md)
-    * [Entity 와 Value](architecture-and-pattern/ddd-domain-driven-design/ddd-start/entity-value.md)
-  * [DDD란](architecture-and-pattern/ddd-domain-driven-design/ddd.md)
-  * [Strategic Design](architecture-and-pattern/ddd-domain-driven-design/strategic-design.md)
-  * [Tactical Design](architecture-and-pattern/ddd-domain-driven-design/tactical-design.md)
-* [EDA(Event Driven Architecture)](architecture-and-pattern/eda-event-driven-architecture.md)
-
-## JPA
-
-* [영속성](jpa/undefined.md)
-* [GORM 과 JPA의 차이점](jpa/gorm-jpa.md)
-* [🎓 트랜잭션](jpa/undefined-1/README.md)
-  * [격리수준](jpa/undefined-1/undefined.md)
-
-## JavaCollectionFramework
-
-* [Java Collection FrameWork](javacollectionframework/java-collection-framework.md)
-* [Collection](javacollectionframework/collection/README.md)
-  * [List](javacollectionframework/collection/list/README.md)
-    * [LinkedList](javacollectionframework/collection/list/linkedlist.md)
-    * [Vector](javacollectionframework/collection/list/vector.md)
-    * [ArrayList](javacollectionframework/collection/list/arraylist.md)
-* [Map](javacollectionframework/map.md)
-
 ## Langchain
 
-* [로드맵](langchain/undefined.md)
+* [로드맵](README.md)
 * [Langchain 기본 이해](langchain/langchain/README.md)
   * [개념](langchain/langchain/undefined.md)
 
@@ -89,3 +44,8 @@
 * [Find Eventual Safe States](leetcode/find-eventual-safe-states/README.md)
   * [답](leetcode/find-eventual-safe-states/undefined.md)
 * [Palindrome Number](leetcode/palindrome-number.md)
+
+## 콤퓨타 사이언스(CS)
+
+* [로드맵](cs/undefined.md)
+* [Process 와 Thread](cs/process-thread.md)
