@@ -1,6 +1,6 @@
 # Process 와 Thread
 
-## Process
+Process
 
 ✅ **프로세스란?**
 
@@ -53,31 +53,61 @@
 * 하나의 프로세스에서 여러 개의 쓰레드를 동시에 실행하여 멀티태스킹을 가능하게 함.
 * 다만, **멀티 쓰레딩 환경에서는 동기화 문제가 발생할 가능성이 높음** -> **Mutex(뮤텍스), Semaphore(세마포어), Lock** 등을 이용한 동기화가 필요함.
 
+***
+
+## 프로세스와 쓰레드 동작 방식
+
+### 1. 프로세스 생성 방식
+
+운영체제에서 프로세스를 생성하는 대표적인 방법은 `fork()` 시스템 콜을 이용하는 것임.
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+    printf("Before fork\n");
+    
+    pid_t pid = fork(); // 새로운 프로세스 생성 
+    
+    if(pid == 0){
+        printf("Child Process: PID = %d\n", getpid());
+    } else {
+        printf("Parent Process: PID = %d\n", getpid());
+    }
+    
+    return 0;
+}
+```
+
+✔ `fork()`를 호출하면 부모 프로세스가 새로운 자식 프로세스를 생성한다.\
+✔ 부모와 자식 프로세스는 서로 다른 메모리를 가지므로 독립적으로 실행됨.
 
 
 
+### 2. 쓰레드 생성 방식(C, POSIX Threads)
 
+멀티쓰레딩을 구현할 때 `pthread` 라이브러리를 사용할 수 있다.
 
+```c
+#include <stdio.h>
+#include <pthread.h>
 
+void *thread_function(void *arg) {
+    printf("Hello from thread!\n");
+    return NULL;
+}
 
+int main(){
+    pthread_t thread;
+    pthread_create(&thread, NULL, thread_function. NULL);
+    pthread_join(thread, NULL);
+    
+    printf("Main thread finished.\n");
+    return 0;
+}
+```
 
+`pthread_create()` 를 사용하여 새로운 쓰레드를 생성함.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{% embed url="https://inpa.tistory.com/entry/%F0%9F%91%A9%E2%80%8D%F0%9F%92%BB-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%E2%9A%94%EF%B8%8F-%EC%93%B0%EB%A0%88%EB%93%9C-%EC%B0%A8%EC%9D%B4" %}
-
-{% embed url="https://somaz.tistory.com/265" %}
-
+`pthread_join()` 을 사용하여 생성된 쓰레드가 종료될 때까지 기다림.
