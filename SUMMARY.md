@@ -54,3 +54,4 @@
   * [Process 와 Thread](cs/os/process-thread.md)
   * [CPU Scheduling](cs/os/cpu-scheduling.md)
   * [Synchronize(동기화)와 Deadlock](cs/os/synchronize-deadlock.md)
+  * [Memory](cs/os/memory.md)
