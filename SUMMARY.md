@@ -50,5 +50,7 @@
 ## 콤퓨타 사이언스(CS)
 
 * [로드맵](cs/undefined.md)
-* [Process 와 Thread](cs/process-thread.md)
-* [CPU Scheduling](cs/cpu-scheduling.md)
+* [OS](cs/os/README.md)
+  * [Process 와 Thread](cs/os/process-thread.md)
+  * [CPU Scheduling](cs/os/cpu-scheduling.md)
+  * [Synchronize(동기화)와 Deadlock](cs/os/synchronize-deadlock.md)
