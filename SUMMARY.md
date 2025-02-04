@@ -33,6 +33,7 @@
 * [Load Balancing](maeil-mail/load-balancing.md)
 * [REST 란](maeil-mail/rest.md)
 * [ACID](maeil-mail/acid.md)
+* [스케일 아웃과 스케일 업](maeil-mail/undefined.md)
 
 ## Fine-tuning
 
