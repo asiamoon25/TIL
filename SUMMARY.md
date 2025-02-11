@@ -40,6 +40,7 @@
   * [Multiplexing(멀티플렉싱)](maeil-mail/http-1.1-http-2.0/multiplexing.md)
 * [관계형 데이터베이스와 비관계형 데이터베이스](maeil-mail/undefined-2.md)
 * [캐시 스탬피드 현상](maeil-mail/undefined-3.md)
+* [시스템 간 비동기 연동 방식](maeil-mail/undefined-4.md)
 
 ## Fine-tuning
 
