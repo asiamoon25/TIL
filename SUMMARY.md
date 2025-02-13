@@ -53,11 +53,13 @@
 
 ## LeetCode
 
-* [Find Eventual Safe States](leetcode/find-eventual-safe-states/README.md)
-  * [답](leetcode/find-eventual-safe-states/undefined.md)
-* [Palindrome Number](leetcode/palindrome-number.md)
-* [ValidParentheses](leetcode/validparentheses.md)
-* [Climbing Stairs](leetcode/climbing-stairs.md)
+* [Easy](leetcode/easy/README.md)
+  * [Palindrome Number](leetcode/easy/palindrome-number.md)
+  * [Climbing Stairs](leetcode/easy/climbing-stairs.md)
+  * [ValidParentheses](leetcode/easy/validparentheses.md)
+  * [Find Eventual Safe States](leetcode/easy/find-eventual-safe-states/README.md)
+    * [답](leetcode/easy/find-eventual-safe-states/undefined.md)
+  * [Remove Duplicates from Sorted List](leetcode/easy/remove-duplicates-from-sorted-list.md)
 
 ## 콤퓨타 사이언스(CS)
 
