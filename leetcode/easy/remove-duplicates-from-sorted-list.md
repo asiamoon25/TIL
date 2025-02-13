@@ -82,4 +82,4 @@ public class Solution {
 2. `createLinkedList(int[] values)`&#x20;
    1. 배열을 **연결 리스트로 변환하는 메서드**
 3. `printLinkedList(ListNode head)`&#x20;
-   1. 연결 리스트를 출력하는 메섣,
+   1. 연결 리스트를 출력하는 메서드
