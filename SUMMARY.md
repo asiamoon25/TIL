@@ -60,6 +60,7 @@
   * [Find Eventual Safe States](leetcode/easy/find-eventual-safe-states/README.md)
     * [답](leetcode/easy/find-eventual-safe-states/undefined.md)
   * [Remove Duplicates from Sorted List](leetcode/easy/remove-duplicates-from-sorted-list.md)
+  * [Merge Sorted Array](leetcode/easy/merge-sorted-array.md)
 
 ## 콤퓨타 사이언스(CS)
 
