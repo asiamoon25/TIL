@@ -42,6 +42,7 @@
 * [캐시 스탬피드 현상](maeil-mail/undefined-3.md)
 * [시스템 간 비동기 연동 방식](maeil-mail/undefined-4.md)
 * [CAP 정리](maeil-mail/cap.md)
+* [응집도와 결합도](maeil-mail/undefined-5.md)
 
 ## Fine-tuning
 
