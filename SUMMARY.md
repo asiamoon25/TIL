@@ -44,6 +44,7 @@
 * [CAP 정리](maeil-mail/cap.md)
 * [응집도와 결합도](maeil-mail/undefined-5.md)
 * [Redis가 싱글 쓰레드로 만들어진 이유](maeil-mail/redis.md)
+* [교착 상태](maeil-mail/undefined-6.md)
 
 ## Fine-tuning
 
