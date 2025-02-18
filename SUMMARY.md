@@ -89,3 +89,5 @@
   * [Azure Storage 로 로그 백업](wiki/fluentd/azure-storage.md)
   * [Azure LogAnalytics](wiki/fluentd/azure-loganalytics.md)
   * [성능 테스트(Azure Storage)](wiki/fluentd/azure-storage-1.md)
+* [Jenkins](wiki/jenkins.md)
+* [장애 대응](wiki/undefined.md)
