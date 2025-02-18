@@ -76,5 +76,7 @@
 * [JAVA](cs/java/README.md)
   * [JVM](cs/java/jvm.md)
   * [변수](cs/java/undefined.md)
+  * [연산자](cs/java/undefined-1.md)
+  * [조건&반복문](cs/java/and.md)
 * [자료구조 뭐시기](cs/undefined-1/README.md)
   * [바빌로니아 법](cs/undefined-1/undefined.md)
