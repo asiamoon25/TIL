@@ -1,0 +1,291 @@
+# DB Connection Pool 분리
+
+<figure><img src="../.gitbook/assets/Items.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/Items (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/Items (2).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/Items (3).png" alt=""><figcaption></figcaption></figure>
+
+**GameService.groovy**
+
+```groovy
+String query = String.format(  
+"DECLARE @result int exec @result = %s..SP_SLOT '%s' SELECT @result as result"  
+,"ACCOU"  
+,username  
+)  
+String dataSourceName = 'dataSource_gameName'  
+String logPath = 'log/queryResultCheck'  
+def result2 = commonGameService.gameQueryExecuteRowConnectionPool(dataSourceName,query, logPath)
+```
+
+
+
+**CommonGameService.groovy**
+
+```groovy
+def gameQueryExecuteRowConnectionPool(String dataSourceName, String query, String logPath){
+        Connection conn = null
+        Sql sql = null
+        def map = [:]
+        try{
+            DataSource dataSource = null
+//            String dataSourceName = dbInfo.get("dataSourceName").toString() //dataSource_audition
+            if(dataSourceName) {
+                dataSource = DynamicConnectionPoolManager.getDataSource(dataSourceName)
+            }else{
+                return map.put('Return',false)
+            }
+            conn = dataSource.getConnection()
+            sql = new Sql(conn)
+            if(conn) {
+                sql.eachRow(query,
+                        {
+                            it.getProperties().metaData.each{ obj -> map.put(obj.columnName, it.getAt(obj.columnName))  }
+                        }
+                )
+                if(logPath){
+                    String logString = "query: $query, queryResult: $map.toString()"
+                    Logger.log3(logString,logPath)
+                }
+            }
+        }catch(Exception e){
+            map.put('Return', false)
+            String errMsg = e.printStackTrace()
+            if(logPath){
+                String logString = "query: $query, errMsg: $errMsg"
+                Logger.log3(logString,logPath)
+            }
+        }finally{
+            sql?.close()
+            conn?.close()
+        }
+        return map
+    }
+```
+
+**DynamicConnectionPoolManager.groovy**
+
+```groovy
+static DataSource getDataSource(String dataSourceName) {
+        /*
+         dataSource Map 에 db이름에 맞는 datasource 가 있는지 없는지
+         또는 dataSource Map 에서 DB 이름에 맞는 dataSource 가 null 로 들어가 있지 않은지
+         create 하다가 터지면 dataSource Map 에 null 로 들어감
+        */
+        if (!dataSources.containsKey(dataSourceName) || dataSources.get(dataSourceName) == null) {
+            Properties dbProps = dbPropertiesMap.get(dataSourceName)
+            if (dbProps != null) {
+                try {
+                    DataSource dataSource = createDataSource(dbProps)
+                    dataSources.put(dataSourceName, dataSource)
+                } catch (Exception e) {
+                    dataSources.put(dataSourceName, null) // 실패 시 null로 설정
+                    throw new RuntimeException("Failed to create DataSource for $dataSourceName: ${e.message}", e)
+                }
+            } else {
+                throw new IllegalStateException("No database properties found for: $dataSourceName")
+            }
+        }else {
+            // 이미 생성된 DataSource에 대한 유효성 검사
+            Properties dbProps = dbPropertiesMap.get(dataSourceName)
+            DataSource dataSource = dataSources.get(dataSourceName)
+            String dbType = dbProps.get("dbType").toString()
+            /*
+            Connection 이 있다가 네트워크 문제로 끊겼다가 재연결 될때 Exception 이 나옴.
+            create 하다가 터졌을 때 dataSource Map 에서 삭제
+            valid 통과 시에는 그냥 넘김
+             */
+            if (!isConnectionValid(dataSource,dbType)) {
+                // 유효하지 않은 경우, DataSource 재생성
+                try {
+                    dataSource = createDataSource(dbProps)
+                    dataSources.put(dataSourceName, dataSource)
+                } catch (Exception e) {
+                    dataSources.remove(dataSourceName) // 실패 시 DataSource 제거
+                    throw new RuntimeException("Failed to recreate DataSource for $dataSourceName: ${e.message}", e)
+                }
+            }
+        }
+        return dataSources.get(dataSourceName)
+    }
+```
+
+해당 게임 DB의 Connection Pool 이 없을 때
+
+**DynamicConnectionPoolManager**
+
+**createDataSource**
+
+```java
+private static DataSource createDataSource(Properties dbProps) {
+        PoolProperties p = new PoolProperties()
+        String dataSourceName = dbProps.get("dataSourceName") // 실제 사용되는 db 이름
+        String dbType = dbProps.get("dbType") // mysql, oracle, postgresql, mssql
+        p.setUrl(dbProps.get("url").toString())
+        p.setDriverClassName(dbProps.get("dbDriver").toString())
+        p.setUsername(dbProps.get("username").toString())
+        p.setPassword(dbProps.get("password").toString())
+        def connectionProperty =[:]
+        if(Environment.current.name == 'test'){
+            connectionProperty = dbType == 'oracle'? DataSourceConfig.dbPropertiesForTestOracle.call() : DataSourceConfig.dbPropertiesForTest.call()
+        }else if (Environment.current.name == 'production') {
+            connectionProperty = dbType == 'oracle'? DataSourceConfig.dbPropertiesForLiveOracle.call() : DataSourceConfig.dbPropertiesForLive.call()
+        }
+        if(!connectionProperty.isEmpty()){
+            p.setJmxEnabled((Boolean)connectionProperty.get("jmxEnabled"))
+            p.setInitialSize(connectionProperty.get("initialSize").toString().toInteger())
+            p.setMaxActive(connectionProperty.get("maxActive").toString().toInteger())
+            p.setMinIdle(connectionProperty.get("minIdle").toString().toInteger())
+            p.setMaxIdle(connectionProperty.get("maxIdle").toString().toInteger())
+            p.setMaxWait(connectionProperty.get("maxWait").toString().toInteger())
+            p.setMaxAge(connectionProperty.get("maxAge").toString().toInteger())
+          p.setTimeBetweenEvictionRunsMillis(connectionProperty.get("timeBetweenEvictionRunsMillis").toString().toInteger())
+           p.setMinEvictableIdleTimeMillis(connectionProperty.get("minEvictableIdleTimeMillis").toString().toInteger())
+            p.setValidationQuery(connectionProperty.get("validationQuery").toString())
+           p.setValidationQueryTimeout(connectionProperty.get("validationQueryTimeout").toString().toInteger())
+            p.setValidationInterval(connectionProperty.get("validationInterval").toString().toInteger())
+            p.setTestOnBorrow((Boolean)connectionProperty.get("testOnBorrow"))
+            p.setTestWhileIdle((Boolean)connectionProperty.get("testWhileIdle"))
+            p.setTestOnReturn((Boolean)connectionProperty.get("testOnReturn"))
+            p.setJdbcInterceptors(connectionProperty.get("jdbcInterceptors").toString())
+       p.setDefaultTransactionIsolation(connectionProperty.get("defaultTransactionIsolation").toString().toInteger())
+        }
+        return new DataSource(p)
+    }
+```
+
+***
+
+#### 순서
+
+**BootStrap.groovy**  에서 DB Connection Pool 생성 시 필요한 DB Properties 를 Map 에 저장함.
+
+```groovy
+private static final ConcurrentHashMap<String, Properties> dbPropertiesMap  = [:]
+```
+
+`static final` 키워드는 해당 필드가 클래스의 인스턴스 간에 공유되며, 한번 초기화 되면 그 값이 변경 되지 않음을 의미함.
+
+즉, 변수 자체의 참조가 변경되지 않는다는 것이고, 변수가 참조하는 객체의 내부 상태는 변경될 수 있음.
+
+
+
+그 후에 Connection Pool 을 생성하고 있지 않다가 **GameService** 같은 곳에서 DynamicConnectionPoolManager에 있는 getDataSource 호출 시
+
+```groovy
+if (!dataSources.containsKey(dataSourceName) || dataSources.get(dataSourceName) == null) {
+            Properties dbProps = dbPropertiesMap.get(dataSourceName)
+            if (dbProps != null) {
+                try {
+                    DataSource dataSource = createDataSource(dbProps)
+                    dataSources.put(dataSourceName, dataSource)
+                } catch (Exception e) {
+                    dataSources.put(dataSourceName, null) // 실패 시 null로 설정
+                    throw new RuntimeException("Failed to create DataSource for $dataSourceName: ${e.message}", e)
+                }
+            } else {
+                throw new IllegalStateException("No database properties found for: $dataSourceName")
+            }
+        }else {
+```
+
+이 if 절에 걸려서 **createDataSource** 로 **Connection Pool** 을 생성하게 됨.
+
+```groovy
+PoolProperties p = new PoolProperties()
+        String dataSourceName = dbProps.get("dataSourceName") // 실제 사용되는 db 이름
+        String dbType = dbProps.get("dbType") // mysql, oracle, postgresql, mssql
+        p.setUrl(dbProps.get("url").toString())
+        p.setDriverClassName(dbProps.get("dbDriver").toString())
+        p.setUsername(dbProps.get("username").toString())
+        p.setPassword(dbProps.get("password").toString())  
+        def connectionProperty =[:]
+        if(Environment.current.name == 'test'){
+            connectionProperty = dbType == 'oracle'? DataSourceConfig.dbPropertiesForTestOracle.call() : DataSourceConfig.dbPropertiesForTest.call()
+        }else if (Environment.current.name == 'production') {
+            connectionProperty = dbType == 'oracle'? DataSourceConfig.dbPropertiesForLiveOracle.call() : DataSourceConfig.dbPropertiesForLive.call()
+        }
+        if(!connectionProperty.isEmpty()){
+            ...
+        }
+        return new DataSource(p)
+```
+
+이렇게 처음에 dbPropertiesMap 에 저장된 값을 dataSourceName 으로 가져와서 Connection Pool을 맺는 과정을 거침.
+
+
+
+### 이미 있는 Connection Pool 은?
+
+데이터베이스가 점검날 개발사에서 점검을 해버리면 Connection Pool 은 잡고 있는 상태로 네트워크만 끊어져 Connection Pool 이 이상하게 된다.
+
+그렇게 다시 DB 연결이 되서 재시도 하게 되면 이미 닫힌 Connection 에 연결을 넣는다는 error 가 나오게 된다.
+
+그러므로 getDataSource 를 할때
+
+```groovy
+}else {
+            // 이미 생성된 DataSource에 대한 유효성 검사
+            Properties dbProps = dbPropertiesMap.get(dataSourceName)
+            DataSource dataSource = dataSources.get(dataSourceName)
+            String dbType = dbProps.get("dbType").toString()
+            /*
+            Connection 이 있다가 네트워크 문제로 끊겼다가 재연결 될때 Exception 이 나옴.
+            create 하다가 터졌을 때 dataSource Map 에서 삭제
+            valid 통과 시에는 그냥 넘김
+             */
+            if (!isConnectionValid(dataSource,dbType)) {
+                // 유효하지 않은 경우, DataSource 재생성
+                try {
+                    dataSource = createDataSource(dbProps)
+                    dataSources.put(dataSourceName, dataSource)
+                } catch (Exception e) {
+                    dataSources.remove(dataSourceName) // 실패 시 DataSource 제거
+                    throw new RuntimeException("Failed to recreate DataSource for $dataSourceName: ${e.message}", e)
+                }
+            }
+        }
+```
+
+이 부분에서 **isConnectionValid** 를 호출해서 **Connection Pool** 이 정상적인지 확인하게 된다.
+
+**isConnectionValid** 에서는&#x20;
+
+```groovy
+private static boolean isConnectionValid(DataSource dataSource, String dbType) {
+        String query = "SELECT 1"
+        if(dbType && dbType == 'oracle'){
+            query = "SELECT 1 FROM DUAL" // oracle 은 DUAL 테이블
+        }
+        try {
+            Connection conn = dataSource.getConnection()
+            Statement stmt = conn.createStatement()
+            stmt.executeQuery(query)
+            conn.close()
+            return true
+        } catch (SQLException e) {
+            return false
+        }
+    }
+```
+
+MySQL 의 경우에는 `SELECT 1` , ORACLE 에 경우에는 `SELECT 1 FROM DUAL` 이라는 validation query 를 날려서 Connection 을 확인하게 됨.
+
+좀 높은 버전에서는 **isValid()** 라는 녀석이 있지만 버전이 낮아서 `SELECT 1` 을 날려야함.
+
+`SELECT 1` or `SELECT 1 FROM DUAL` 을 했을 때 안되면 다시 `createDataSource` 를 하게 됨.
+
+***
+
+_하지만 뭐 할때마다 SELECT 1 을 날리면?_
+
+`SELECT 1` 이나 `SELECT 1 FROM DUAL` 의 경우는 많은 요청이 올 시 성능 문제를 일으킬 수 있기 때문에 해당 부분에서는 Connection Pool 생성 시에 옵션 validationTimeout 이 있는지 확인 후에 소스 수정이 필요할 것으로 보임.
+
+
+
+1. Connection Pool 라이브러리를 다시 사용하여 ValidationTimeout 기능을 사용
+2. HealthCheck 를 자동
+   1. 연결 유효성 검사를 자동화하고, 연결 상태를 실시간으로 모니터링할 수 있는 시스템을 구축하는 것이 좋을듯함. 예를 들어 k8s 환경에서는 Liveness Probe 와 Readiness Probe 를 설정하여 컨테이너의 상태를 주기적으로 체크하고, 문제가 발견되면 자동으로 재시작하도록 설정할 수 있음.
