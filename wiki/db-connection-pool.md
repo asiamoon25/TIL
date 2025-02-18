@@ -289,3 +289,75 @@ _하지만 뭐 할때마다 SELECT 1 을 날리면?_
 1. Connection Pool 라이브러리를 다시 사용하여 ValidationTimeout 기능을 사용
 2. HealthCheck 를 자동
    1. 연결 유효성 검사를 자동화하고, 연결 상태를 실시간으로 모니터링할 수 있는 시스템을 구축하는 것이 좋을듯함. 예를 들어 k8s 환경에서는 Liveness Probe 와 Readiness Probe 를 설정하여 컨테이너의 상태를 주기적으로 체크하고, 문제가 발견되면 자동으로 재시작하도록 설정할 수 있음.
+
+***
+
+### 테스트 준비
+
+* DB Connection Pool 제거 부하 테스트
+* 호출하는 API : testApi/checkExistIngameAccount
+* 호출 가는 DB  : TESTGAMEACCOUNT(MySQL)
+
+```sql
+SELECT * FROM account;
+```
+
+Connection 확인 한 쿼리
+
+```sql
+SHOW STATUS LIKE 'Threads_connected';
+```
+
+***
+
+### 테스트 시작
+
+
+
+#### 분리 미적용
+
+* 쿼리 실행 전
+
+<figure><img src="../.gitbook/assets/Pasted image 20240123111301.png" alt=""><figcaption></figcaption></figure>
+
+* 1만건 이상 요청 시
+
+<figure><img src="../.gitbook/assets/Pasted image 20240123111313.png" alt=""><figcaption></figcaption></figure>
+
+시간 : 1분
+
+
+
+#### 분리 적용
+
+* 쿼리 실행 전
+
+<figure><img src="../.gitbook/assets/Pasted image 20240123111558.png" alt=""><figcaption></figcaption></figure>
+
+* 1만건 이상 요청 시&#x20;
+
+<figure><img src="../.gitbook/assets/Pasted image 20240123112355.png" alt=""><figcaption></figcaption></figure>
+
+시간 : 6분
+
+
+
+여기에는 문제가 있음.&#x20;
+
+왜냐하면 StartUp 시 Connection Pool 을 잡기 전에 들어간거여서 시간이 오래 걸린 거였음..
+
+아래는 Connection Pool 을 미리 다 잡은 상태에서 테스트 시의 결과임.
+
+<figure><img src="../.gitbook/assets/Pasted image 20240129115653.png" alt=""><figcaption></figcaption></figure>
+
+시간 : 1분 30초
+
+***
+
+### 결론
+
+초반만 Connection Pool 을 생성하는 작업 때문에 시간이 걸리지만 Connection Pool 을 잡고 하면 Connection 수는 늘어나지만 속도는 조금 더 빨라짐.
+
+추가적으로 다른 Game DB 의 네트워크 연결이 안되어도 본사 플랫폼 DB 만 연결이 된다면 start up 이 가능해짐.
+
+점검 날 DB 점검 유무 상관 없이 배포를 할 수 있음.
