@@ -8,155 +8,6 @@
 
 <figure><img src="../.gitbook/assets/Items (3).png" alt=""><figcaption></figcaption></figure>
 
-**GameService.groovy**
-
-```groovy
-String query = String.format(  
-"DECLARE @result int exec @result = %s..SP_SLOT '%s' SELECT @result as result"  
-,"ACCOU"  
-,username  
-)  
-String dataSourceName = 'dataSource_gameName'  
-String logPath = 'log/queryResultCheck'  
-def result2 = commonGameService.gameQueryExecuteRowConnectionPool(dataSourceName,query, logPath)
-```
-
-
-
-**CommonGameService.groovy**
-
-```groovy
-def gameQueryExecuteRowConnectionPool(String dataSourceName, String query, String logPath){
-        Connection conn = null
-        Sql sql = null
-        def map = [:]
-        try{
-            DataSource dataSource = null
-//            String dataSourceName = dbInfo.get("dataSourceName").toString() //dataSource_audition
-            if(dataSourceName) {
-                dataSource = DynamicConnectionPoolManager.getDataSource(dataSourceName)
-            }else{
-                return map.put('Return',false)
-            }
-            conn = dataSource.getConnection()
-            sql = new Sql(conn)
-            if(conn) {
-                sql.eachRow(query,
-                        {
-                            it.getProperties().metaData.each{ obj -> map.put(obj.columnName, it.getAt(obj.columnName))  }
-                        }
-                )
-                if(logPath){
-                    String logString = "query: $query, queryResult: $map.toString()"
-                    Logger.log3(logString,logPath)
-                }
-            }
-        }catch(Exception e){
-            map.put('Return', false)
-            String errMsg = e.printStackTrace()
-            if(logPath){
-                String logString = "query: $query, errMsg: $errMsg"
-                Logger.log3(logString,logPath)
-            }
-        }finally{
-            sql?.close()
-            conn?.close()
-        }
-        return map
-    }
-```
-
-**DynamicConnectionPoolManager.groovy**
-
-```groovy
-static DataSource getDataSource(String dataSourceName) {
-        /*
-         dataSource Map 에 db이름에 맞는 datasource 가 있는지 없는지
-         또는 dataSource Map 에서 DB 이름에 맞는 dataSource 가 null 로 들어가 있지 않은지
-         create 하다가 터지면 dataSource Map 에 null 로 들어감
-        */
-        if (!dataSources.containsKey(dataSourceName) || dataSources.get(dataSourceName) == null) {
-            Properties dbProps = dbPropertiesMap.get(dataSourceName)
-            if (dbProps != null) {
-                try {
-                    DataSource dataSource = createDataSource(dbProps)
-                    dataSources.put(dataSourceName, dataSource)
-                } catch (Exception e) {
-                    dataSources.put(dataSourceName, null) // 실패 시 null로 설정
-                    throw new RuntimeException("Failed to create DataSource for $dataSourceName: ${e.message}", e)
-                }
-            } else {
-                throw new IllegalStateException("No database properties found for: $dataSourceName")
-            }
-        }else {
-            // 이미 생성된 DataSource에 대한 유효성 검사
-            Properties dbProps = dbPropertiesMap.get(dataSourceName)
-            DataSource dataSource = dataSources.get(dataSourceName)
-            String dbType = dbProps.get("dbType").toString()
-            /*
-            Connection 이 있다가 네트워크 문제로 끊겼다가 재연결 될때 Exception 이 나옴.
-            create 하다가 터졌을 때 dataSource Map 에서 삭제
-            valid 통과 시에는 그냥 넘김
-             */
-            if (!isConnectionValid(dataSource,dbType)) {
-                // 유효하지 않은 경우, DataSource 재생성
-                try {
-                    dataSource = createDataSource(dbProps)
-                    dataSources.put(dataSourceName, dataSource)
-                } catch (Exception e) {
-                    dataSources.remove(dataSourceName) // 실패 시 DataSource 제거
-                    throw new RuntimeException("Failed to recreate DataSource for $dataSourceName: ${e.message}", e)
-                }
-            }
-        }
-        return dataSources.get(dataSourceName)
-    }
-```
-
-해당 게임 DB의 Connection Pool 이 없을 때
-
-**DynamicConnectionPoolManager**
-
-**createDataSource**
-
-```java
-private static DataSource createDataSource(Properties dbProps) {
-        PoolProperties p = new PoolProperties()
-        String dataSourceName = dbProps.get("dataSourceName") // 실제 사용되는 db 이름
-        String dbType = dbProps.get("dbType") // mysql, oracle, postgresql, mssql
-        p.setUrl(dbProps.get("url").toString())
-        p.setDriverClassName(dbProps.get("dbDriver").toString())
-        p.setUsername(dbProps.get("username").toString())
-        p.setPassword(dbProps.get("password").toString())
-        def connectionProperty =[:]
-        if(Environment.current.name == 'test'){
-            connectionProperty = dbType == 'oracle'? DataSourceConfig.dbPropertiesForTestOracle.call() : DataSourceConfig.dbPropertiesForTest.call()
-        }else if (Environment.current.name == 'production') {
-            connectionProperty = dbType == 'oracle'? DataSourceConfig.dbPropertiesForLiveOracle.call() : DataSourceConfig.dbPropertiesForLive.call()
-        }
-        if(!connectionProperty.isEmpty()){
-            p.setJmxEnabled((Boolean)connectionProperty.get("jmxEnabled"))
-            p.setInitialSize(connectionProperty.get("initialSize").toString().toInteger())
-            p.setMaxActive(connectionProperty.get("maxActive").toString().toInteger())
-            p.setMinIdle(connectionProperty.get("minIdle").toString().toInteger())
-            p.setMaxIdle(connectionProperty.get("maxIdle").toString().toInteger())
-            p.setMaxWait(connectionProperty.get("maxWait").toString().toInteger())
-            p.setMaxAge(connectionProperty.get("maxAge").toString().toInteger())
-          p.setTimeBetweenEvictionRunsMillis(connectionProperty.get("timeBetweenEvictionRunsMillis").toString().toInteger())
-           p.setMinEvictableIdleTimeMillis(connectionProperty.get("minEvictableIdleTimeMillis").toString().toInteger())
-            p.setValidationQuery(connectionProperty.get("validationQuery").toString())
-           p.setValidationQueryTimeout(connectionProperty.get("validationQueryTimeout").toString().toInteger())
-            p.setValidationInterval(connectionProperty.get("validationInterval").toString().toInteger())
-            p.setTestOnBorrow((Boolean)connectionProperty.get("testOnBorrow"))
-            p.setTestWhileIdle((Boolean)connectionProperty.get("testWhileIdle"))
-            p.setTestOnReturn((Boolean)connectionProperty.get("testOnReturn"))
-            p.setJdbcInterceptors(connectionProperty.get("jdbcInterceptors").toString())
-       p.setDefaultTransactionIsolation(connectionProperty.get("defaultTransactionIsolation").toString().toInteger())
-        }
-        return new DataSource(p)
-    }
-```
-
 ***
 
 #### 순서
@@ -175,9 +26,8 @@ private static final ConcurrentHashMap<String, Properties> dbPropertiesMap  = [:
 
 그 후에 Connection Pool 을 생성하고 있지 않다가 **GameService** 같은 곳에서 DynamicConnectionPoolManager에 있는 getDataSource 호출 시
 
-```groovy
-if (!dataSources.containsKey(dataSourceName) || dataSources.get(dataSourceName) == null) {
-            Properties dbProps = dbPropertiesMap.get(dataSourceName)
+<pre class="language-groovy"><code class="lang-groovy"><strong>if (!dataSources.containsKey(dataSourceName) || dataSources.get(dataSourceName) == null) {
+</strong>            Properties dbProps = dbPropertiesMap.get(dataSourceName)
             if (dbProps != null) {
                 try {
                     DataSource dataSource = createDataSource(dbProps)
@@ -190,7 +40,7 @@ if (!dataSources.containsKey(dataSourceName) || dataSources.get(dataSourceName) 
                 throw new IllegalStateException("No database properties found for: $dataSourceName")
             }
         }else {
-```
+</code></pre>
 
 이 if 절에 걸려서 **createDataSource** 로 **Connection Pool** 을 생성하게 됨.
 

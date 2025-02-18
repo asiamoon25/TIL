@@ -84,3 +84,8 @@
 ## WIKI
 
 * [DB Connection Pool 분리](wiki/db-connection-pool.md)
+* [Fluentd](wiki/fluentd/README.md)
+  * [설치 순서](wiki/fluentd/undefined.md)
+  * [Azure Storage 로 로그 백업](wiki/fluentd/azure-storage.md)
+  * [Azure LogAnalytics](wiki/fluentd/azure-loganalytics.md)
+  * [성능 테스트(Azure Storage)](wiki/fluentd/azure-storage-1.md)

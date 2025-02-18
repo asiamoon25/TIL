@@ -2,7 +2,7 @@
 
 {% embed url="https://leetcode.com/problems/merge-sorted-array" %}
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 개느림...
 
