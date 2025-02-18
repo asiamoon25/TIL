@@ -83,11 +83,18 @@
 
 ## WIKI
 
+* [이관](wiki/undefined/README.md)
+  * [한국 이관 시 문제점 해결](wiki/undefined/undefined.md)
+  * [일본 이관 시 문제점 해결](wiki/undefined/undefined-1.md)
 * [DB Connection Pool 분리](wiki/db-connection-pool.md)
 * [Fluentd](wiki/fluentd/README.md)
   * [설치 순서](wiki/fluentd/undefined.md)
   * [Azure Storage 로 로그 백업](wiki/fluentd/azure-storage.md)
   * [Azure LogAnalytics](wiki/fluentd/azure-loganalytics.md)
   * [성능 테스트(Azure Storage)](wiki/fluentd/azure-storage-1.md)
+  * [ASCII-8BIT to UTF-8 Error](wiki/fluentd/ascii-8bit-to-utf-8-error.md)
 * [Jenkins](wiki/jenkins.md)
-* [장애 대응](wiki/undefined.md)
+* [장애 대응](wiki/undefined-1/README.md)
+  * [Teams Alert](wiki/undefined-1/teams-alert.md)
+  * [OpenJDK 64-Bit Server VM warning:INFO: os::com...](wiki/undefined-1/openjdk-64-bit-server-vm-warning-info-os-com....md)
+  * [swap 0k(free 0k)](wiki/undefined-1/swap-0k-free-0k.md)

@@ -1,8 +1,8 @@
-# 장애 대응
+# Teams Alert
 
 기존 서버가 장애로 인해 죽었을 때
 
-<figure><img src="../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
 
 이런식으로 팀즈 메신저 알람이 옴.
 
@@ -14,7 +14,7 @@
 
 이런 방식으로 문제를 해결해 왔는데 호출을 조금이라도 줄이기 위해 shell script 로 스케줄러를 돌려 서버 상황을 5분 또는 30분 에 한번 씩 확인 후 팀즈 알림으로 보내는 스케줄러를 제작
 
-<figure><img src="../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 
 **결과**
 
@@ -26,7 +26,7 @@ tomcat 프로세스를 체크해서 tomcat 프로세스가 죽었을 때 알림�
 
 이러한 상황을 방지하고자 server size 를 체크해서 알림으로 보내는 스케줄러 작성
 
-<figure><img src="../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
 
 <pre class="language-shell"><code class="lang-shell">################################################################################
 <strong>
