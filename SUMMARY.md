@@ -47,6 +47,7 @@
 * [교착 상태](maeil-mail/undefined-6.md)
 * [Call By Value 와 Call By Reference에 대해서 설명](maeil-mail/call-by-value-call-by-reference.md)
 * [방어적 복사에 대해서](maeil-mail/undefined-7.md)
+* [해시 충돌](maeil-mail/undefined-8.md)
 
 ## Fine-tuning
 
@@ -81,7 +82,10 @@
   * [연산자](cs/java/undefined-1.md)
   * [조건&반복문](cs/java/and.md)
 * [자료구조 뭐시기](cs/undefined-1/README.md)
-  * [바빌로니아 법](cs/undefined-1/undefined.md)
+  * [자료구조](cs/undefined-1/undefined/README.md)
+    * [HashMap](cs/undefined-1/undefined/hashmap.md)
+  * [알고 뭐시기](cs/undefined-1/undefined-1/README.md)
+    * [바빌로니아 법](cs/undefined-1/undefined-1/undefined.md)
 
 ## WIKI
 
