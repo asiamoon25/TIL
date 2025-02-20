@@ -105,6 +105,7 @@
   * [OpenJDK 64-Bit Server VM warning:INFO: os::com...](wiki/undefined-1/openjdk-64-bit-server-vm-warning-info-os-com....md)
   * [swap 0k(free 0k)](wiki/undefined-1/swap-0k-free-0k.md)
   * [PostgreSQL 에러 해결](wiki/undefined-1/postgresql-scram-sha-256.md)
+  * [Mod\_tile 404 error](wiki/undefined-1/mod_tile-404-error.md)
 * [Metabase](wiki/metabase/README.md)
   * [왜 Docker 로..](wiki/metabase/docker-...md)
   * [설치 과정](wiki/metabase/undefined/README.md)
