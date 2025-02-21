@@ -48,6 +48,7 @@
 * [Call By Value 와 Call By Reference에 대해서 설명](maeil-mail/call-by-value-call-by-reference.md)
 * [방어적 복사에 대해서](maeil-mail/undefined-7.md)
 * [해시 충돌](maeil-mail/undefined-8.md)
+* [디스크 접근 시간](maeil-mail/undefined-9.md)
 
 ## Fine-tuning
 
