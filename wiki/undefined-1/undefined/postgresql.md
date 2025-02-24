@@ -46,7 +46,7 @@ osm 을 실행하면 자꾸 저 에러가 나길래 찾아보니 hstore 타입�
 해당 postgresql 로 접속해서 명령어를 쳐주면 된다.
 
 ```
-psql -U postgre -d gis -c "CREATE EXTENSION hstore;"
+psql -U postgres -d gis -c "CREATE EXTENSION hstore;"
 
 CREATE EXTENSION
 ```
