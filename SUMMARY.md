@@ -116,3 +116,8 @@
     * [docker-compose 버전](wiki/metabase/undefined/docker-compose.md)
     * [Docker Container 버전](wiki/metabase/undefined/docker-container.md)
   * [H2 에서 MySQL 로 Migration](wiki/metabase/h2-mysql-migration.md)
+
+## Toy Project
+
+* [Japan-Metro](toy-project/japan-metro/README.md)
+  * [Tile Server 제작](toy-project/japan-metro/tile-server.md)

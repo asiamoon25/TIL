@@ -150,7 +150,7 @@ TEST 1 에서 처럼 잦은 flush 로 인해 CPU 사용량이 78% 까지 오르�
 
 **결과**
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 CPU 사용량 0.3 \~ 0.7 유지, flush 시 25 \~ 30% 까지 증가
 

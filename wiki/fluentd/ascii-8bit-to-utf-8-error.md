@@ -26,7 +26,7 @@ tag 안에서 tail 밑에 encoding UTF8 을 적어 중국어가 깨져도 로그
 
 [https://docs.fluentd.org/quickstart/faq#i-got-encoding-error-inside-plugin-how-to-fix-it](https://docs.fluentd.org/quickstart/faq#i-got-encoding-error-inside-plugin-how-to-fix-it)
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 ```xml
 <source>
