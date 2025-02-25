@@ -50,6 +50,7 @@
 * [해시 충돌](maeil-mail/undefined-8.md)
 * [디스크 접근 시간](maeil-mail/undefined-9.md)
 * [URI, URL, URN 의 차이점](maeil-mail/uri-url-urn.md)
+* [CPU 스케줄링](maeil-mail/cpu.md)
 
 ## Fine-tuning
 
