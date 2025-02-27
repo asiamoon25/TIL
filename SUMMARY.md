@@ -52,6 +52,7 @@
 * [URI, URL, URN 의 차이점](maeil-mail/uri-url-urn.md)
 * [CPU 스케줄링](maeil-mail/cpu.md)
 * [시스템 콜](maeil-mail/undefined-10.md)
+* [JVM에서 GC 대상 객체를 판단하는 기준](maeil-mail/jvm-gc.md)
 
 ## Fine-tuning
 
@@ -85,6 +86,7 @@
   * [변수](cs/java/undefined.md)
   * [연산자](cs/java/undefined-1.md)
   * [조건&반복문](cs/java/and.md)
+  * [배열(Array)](cs/java/array.md)
 * [자료구조 뭐시기](cs/undefined-1/README.md)
   * [자료구조](cs/undefined-1/undefined/README.md)
     * [HashMap](cs/undefined-1/undefined/hashmap.md)
