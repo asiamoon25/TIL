@@ -54,6 +54,7 @@
 * [시스템 콜](maeil-mail/undefined-10.md)
 * [JVM에서 GC 대상 객체를 판단하는 기준](maeil-mail/jvm-gc.md)
 * [테스트 주도 개발](maeil-mail/undefined-11.md)
+* [대칭키 및 비대칭키 암호화 방식](maeil-mail/undefined-12.md)
 
 ## Fine-tuning
 
