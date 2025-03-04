@@ -55,3 +55,6 @@ String text = null;
 System.out.println(text.length()); // NPE 발생(Unchecked)
 ```
 
+위 코드에서는 `text` 가 `null` 인데 `.length()` 를 호출하여 `NullPointerException` 이 발생함. 이 예외는 `RuntimeException` 의 하위이므로 컴파일러가 사전에 예외 처리를 요구하지 않음. 만약 이런 예외가 발생하면 특별히 잡지 않는 한 곧바로 프로그램이 종료되며, 논리적인 오류를 수정하는 것이 근본 해결책임. 즉, **Unchecked 예외는 프로그램의 오류를 나타내므로 예외처리를 강제하지 않음** . 필요하다면 catch 로 잡을 수는 있지만, 대부분 로그를 남기고 프로그램을 종료하거나 상위에 전파하여 한 곳에서 처리함.
+
+* **Error 클래스** : `Error` 는 Exception 과 별도로 `java.lang.Error` 를 상속하는 **치명적인 오류** 들을 나타냄. 예외(Exception) 와 달리 **애플리케이션에서 처리할 수 없는 심각한 문제** 를 의미하며, **JVM 레벨에서 발생하는 오류** 들이 주로 속함. 예를 들어 **메모리 부족 오류(OutOfMemoryError )**, **스택 오버플로우(StackOverflowError )**, **JVM 내부 오류** (`InternalError` ) 등이 있음. 이런 오류는 개발자가 미리 예측하거나 대응하기 어렵고, 발생하면 애플리케이션이 **계속 실행하기 어려운 상황** 이기 때문에 일반적으로 catch 로 잡지 않고 프로그램을 종료하거나 상위 시스템에 맡김. 요약하면, `Error` 는 **프로그램이 복구할 수 없는 치명적인 문제** 를 나타내며, `Exception`  (특히 Checked Exception) 은 **프로그램에서 잡아서 처리할 수 있는 오류 상황** 을 나타냄.
