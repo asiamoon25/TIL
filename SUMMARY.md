@@ -127,6 +127,7 @@
     * [docker-compose 버전](wiki/metabase/undefined/docker-compose.md)
     * [Docker Container 버전](wiki/metabase/undefined/docker-container.md)
   * [H2 에서 MySQL 로 Migration](wiki/metabase/h2-mysql-migration.md)
+  * [metabase docker compose 최종본](wiki/metabase/metabase-docker-compose.md)
 
 ## Toy Project
 

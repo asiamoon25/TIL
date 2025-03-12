@@ -79,7 +79,7 @@ CONTAINER ID   IMAGE                 COMMAND                  CREATED       STAT
 docker rm 927c11507bf8 
 ```
 
-삭제 후 [metabase docker compose 최종본](https://dev.azure.com/jeffkang/ht-devOps/_wiki/wikis/ht-devOps.wiki?wikiVersion=GBwikiMaster\&pagePath=/Dev%20Wiki/99.%20References%20%7C%20Study/YEONSANG%27s%20WIKI/Task/metabase%20%EC%84%A4%EC%B9%98%20\(%EC%9D%B4%EC%A0%9C%20docker%EB%A5%BC%20%EA%B3%81%EB%93%A4%EC%9D%B8..\)/metabase%20docker%20compose%20%EC%B5%9C%EC%A2%85%EB%B3%B8) 여기와 동일하게 yml 파일 작성 후 실행하면 된다.
+삭제 후 [metabase docker compose 최종본](metabase-docker-compose.md) 여기와 동일하게 yml 파일 작성 후 실행하면 된다.
 
 ***
 
