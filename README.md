@@ -20,12 +20,12 @@
 2.  **LangChain 설치**
 
     ```bash
-    bash복사편집pip install langchain openai
+    pip install langchain openai
     ```
 3.  **간단한 LangChain 실행**
 
     ```python
-    python복사편집from langchain.prompts import PromptTemplate
+    from langchain.prompts import PromptTemplate
     from langchain.llms import OpenAI
 
     # 프롬프트 정의
@@ -60,7 +60,7 @@
     * 예: 텍스트 생성 → 요약 → 번역.
 
     ```python
-    python복사편집from langchain.chains import SimpleSequentialChain
+    from langchain.chains import SimpleSequentialChain
     from langchain.llms import OpenAI
 
     # LLMs
@@ -84,7 +84,7 @@
     * 예: 챗봇이 이전 메시지를 기억.
 
     ```python
-    python복사편집from langchain.chains import ConversationChain
+    from langchain.chains import ConversationChain
     from langchain.memory import ConversationBufferMemory
 
     memory = ConversationBufferMemory()
@@ -99,7 +99,7 @@
     * **Tools**: 외부 API와 통합.
 
     ```python
-    python복사편집from langchain.agents import initialize_agent, load_tools
+    from langchain.agents import initialize_agent, load_tools
     from langchain.llms import OpenAI
 
     tools = load_tools(["google-search", "calculator"])
@@ -125,7 +125,7 @@
     * Milvus를 활용한 벡터 검색.
 
     ```python
-    python복사편집from langchain.vectorstores import Milvus
+    from langchain.vectorstores import Milvus
     vectorstore = Milvus(host="localhost", port="19530")
 
     result = vectorstore.search("LangChain 활용법", k=5)
@@ -136,7 +136,7 @@
     * SQL 데이터베이스와 연결하여 쿼리 실행.
 
     ```python
-    python복사편집from langchain.sql_database import SQLDatabase
+    from langchain.sql_database import SQLDatabase
     from langchain.chains import SQLDatabaseChain
 
     db = SQLDatabase.from_uri("sqlite:///example.db")
@@ -149,7 +149,7 @@
     * PDF, JSON 등 파일 데이터 연결.
 
     ```python
-    python복사편집from langchain.document_loaders import PyPDFLoader
+    from langchain.document_loaders import PyPDFLoader
 
     loader = PyPDFLoader("example.pdf")
     documents = loader.load()
@@ -172,7 +172,7 @@
     * 대화형 메모리를 추가하여 챗봇 구축.
 
     ```python
-    python복사편집from langchain.chains import ConversationChain
+    from langchain.chains import ConversationChain
 
     memory = ConversationBufferMemory()
     chatbot = ConversationChain(llm=llm, memory=memory)
@@ -185,7 +185,7 @@
     * 사용자의 입력에 따라 관련 문서를 검색하고 추천.
 
     ```python
-    python복사편집result = vectorstore.search("추천 시스템 만들기", k=3)
+    result = vectorstore.search("추천 시스템 만들기", k=3)
     print(result)
     ```
 3.  **API 자동화**
@@ -193,7 +193,7 @@
     * Agents와 Tools를 활용해 Google 검색, 계산기 등 자동화.
 
     ```python
-    python복사편집result = agent.run("Calculate the population of France times 2.")
+    result = agent.run("Calculate the population of France times 2.")
     print(result)
     ```
 
@@ -213,7 +213,7 @@
     * 프롬프트 설계의 중요성 학습 및 최적화 실습.
 
     ```python
-    python복사편집prompt = PromptTemplate(
+    prompt = PromptTemplate(
         input_variables=["question"],
         template="You are an expert in AI. Please answer: {question}"
     )
@@ -223,7 +223,7 @@
     * 동일한 요청에 대한 재응답 시간을 줄이기 위해 캐싱 사용.
 
     ```python
-    python복사편집from langchain.cache import InMemoryCache
+    from langchain.cache import InMemoryCache
 
     cache = InMemoryCache()
     llm.cache = cache
@@ -233,7 +233,7 @@
     * 새로운 툴 생성 및 LangChain에 통합.
 
     ```python
-    python복사편집from langchain.tools import BaseTool
+    from langchain.tools import BaseTool
 
     class CustomTool(BaseTool):
         name = "custom_tool"
