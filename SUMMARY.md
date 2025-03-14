@@ -57,6 +57,7 @@
 * [대칭키 및 비대칭키 암호화 방식](maeil-mail/undefined-12.md)
 * [CSRF 공격](maeil-mail/csrf.md)
 * [JWT](maeil-mail/jwt.md)
+* [정적 IP 주소 할당 방식, 동적 IP 주소 할당 방식](maeil-mail/ip-ip.md)
 
 ## Fine-tuning
 
