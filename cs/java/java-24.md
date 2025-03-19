@@ -83,5 +83,5 @@
 * Virtual Thread Scheduler 모니터링 기능(`jdk.management.VirtualThreadSchedulerMXBean` 제공)
 * TLS 1.3 의 새로운 세션 티켓 개수 조정 가능(`jdk.tls.server.newSessionTicket` 속성 추가)
 * Quantum-Resistant TLS 키 및 서명 알고리즘 제공(양자 내성 암호화 지원)
-* OpenJDK 와 Oracle JDK 의 차이점 유지(예: GraalVM JIT 포함 여부, 설치 프로그램 지원 ㅡㄷㅇ)
+* OpenJDK 와 Oracle JDK 의 차이점 유지(예: GraalVM JIT 포함 여부, 설치 프로그램 지원 등)
 
