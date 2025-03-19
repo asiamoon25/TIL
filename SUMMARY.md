@@ -58,6 +58,7 @@
 * [CSRF 공격](maeil-mail/csrf.md)
 * [JWT](maeil-mail/jwt.md)
 * [정적 IP 주소 할당 방식, 동적 IP 주소 할당 방식](maeil-mail/ip-ip.md)
+* [의존성 주입](maeil-mail/undefined-13.md)
 
 ## Fine-tuning
 
