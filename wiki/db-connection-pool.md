@@ -45,7 +45,7 @@ private static final ConcurrentHashMap<String, Properties> dbPropertiesMap  = [:
 이 if 절에 걸려서 **createDataSource** 로 **Connection Pool** 을 생성하게 됨.
 
 ```groovy
-PoolProperties p = new PoolProperties()
+        PoolProperties p = new PoolProperties()
         String dataSourceName = dbProps.get("dataSourceName") // 실제 사용되는 db 이름
         String dbType = dbProps.get("dbType") // mysql, oracle, postgresql, mssql
         p.setUrl(dbProps.get("url").toString())
