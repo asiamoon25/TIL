@@ -60,6 +60,7 @@
 * [정적 IP 주소 할당 방식, 동적 IP 주소 할당 방식](maeil-mail/ip-ip.md)
 * [의존성 주입](maeil-mail/undefined-13.md)
 * [코드 커버리지](maeil-mail/undefined-14.md)
+* [Graceful Shutdown 의 필요성](maeil-mail/graceful-shutdown.md)
 
 ## Fine-tuning
 
