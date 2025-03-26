@@ -61,6 +61,7 @@
 * [의존성 주입](maeil-mail/undefined-13.md)
 * [코드 커버리지](maeil-mail/undefined-14.md)
 * [Graceful Shutdown 의 필요성](maeil-mail/graceful-shutdown.md)
+* [데이터베이스 정규화](maeil-mail/undefined-15.md)
 
 ## Fine-tuning
 
