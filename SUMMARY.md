@@ -62,6 +62,7 @@
 * [코드 커버리지](maeil-mail/undefined-14.md)
 * [Graceful Shutdown 의 필요성](maeil-mail/graceful-shutdown.md)
 * [데이터베이스 정규화](maeil-mail/undefined-15.md)
+* [Spring Transaction 전파 속성](maeil-mail/spring-transaction.md)
 
 ## Fine-tuning
 
@@ -103,6 +104,7 @@
     * [Java 24](cs/java/java-1/java-24.md)
   * [Generic 과 Enum](cs/java/generic-enum.md)
   * [Java 멀티스레드와 병렬처리](cs/java/java-2.md)
+  * [Lambda & Stream](cs/java/lambda-and-stream.md)
 * [자료구조 뭐시기](cs/undefined-1/README.md)
   * [자료구조](cs/undefined-1/undefined/README.md)
     * [HashMap](cs/undefined-1/undefined/hashmap.md)
