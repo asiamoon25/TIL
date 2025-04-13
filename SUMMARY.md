@@ -156,3 +156,4 @@
 * [대비](coding-test/undefined.md)
 * [알고리즘](coding-test/undefined-1/README.md)
   * [DP(Dynamic Programming)](coding-test/undefined-1/dp-dynamic-programming.md)
+  * [Greedy](coding-test/undefined-1/greedy.md)
