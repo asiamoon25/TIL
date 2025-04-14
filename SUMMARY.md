@@ -158,3 +158,8 @@
   * [DP(Dynamic Programming)](coding-test/undefined-1/dp-dynamic-programming.md)
   * [Greedy](coding-test/undefined-1/greedy.md)
   * [DFS, BFS](coding-test/undefined-1/dfs-bfs.md)
+  * [Dijkstra Algorithm](coding-test/undefined-1/dijkstra-algorithm.md)
+  * [Graph](coding-test/undefined-1/graph.md)
+  * [Permutation, Combination, Subset](coding-test/undefined-1/permutation-combination-subset.md)
+  * [Sort](coding-test/undefined-1/sort.md)
+  * [LinkedList](coding-test/undefined-1/linkedlist.md)
