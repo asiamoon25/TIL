@@ -163,3 +163,5 @@
   * [Permutation, Combination, Subset](coding-test/undefined-1/permutation-combination-subset.md)
   * [Sort](coding-test/undefined-1/sort.md)
   * [LinkedList](coding-test/undefined-1/linkedlist.md)
+* [타임머신\[백준\]](coding-test/undefined-2/README.md)
+  * [회전 초밥](coding-test/undefined-2/undefined.md)
