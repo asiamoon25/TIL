@@ -146,11 +146,6 @@
   * [H2 에서 MySQL 로 Migration](wiki/metabase/h2-mysql-migration.md)
   * [metabase docker compose 최종본](wiki/metabase/metabase-docker-compose.md)
 
-## Toy Project
-
-* [Japan-Metro](toy-project/japan-metro/README.md)
-  * [Tile Server 제작](toy-project/japan-metro/tile-server.md)
-
 ## Coding Test
 
 * [대비](coding-test/undefined.md)
@@ -165,6 +160,8 @@
   * [LinkedList](coding-test/undefined-1/linkedlist.md)
 * [타임머신\[백준\]](coding-test/undefined-2/README.md)
   * [회전 초밥](coding-test/undefined-2/undefined.md)
+* [신기한거](coding-test/undefined-3/README.md)
+  * [요세푸스 순열](coding-test/undefined-3/undefined.md)
 
 ## Project
 
