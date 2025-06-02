@@ -63,6 +63,7 @@
 * [Graceful Shutdown 의 필요성](maeil-mail/graceful-shutdown.md)
 * [데이터베이스 정규화](maeil-mail/undefined-15.md)
 * [Spring Transaction 전파 속성](maeil-mail/spring-transaction.md)
+* [NOT IN 쿼리를 사용할 때 발생할 수 있는 문제와 최적화 방법](maeil-mail/not-in.md)
 
 ## Fine-tuning
 
